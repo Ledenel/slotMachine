@@ -13,7 +13,7 @@ html
         #viewport
             #container
                 #header
-                    h1 Who is luckey?
+                    h1 Who is lucky?
                     h3 ipad and yoga
                 #reels
                   canvas#slot1(width=70,height=300)
@@ -24,6 +24,8 @@ html
                   canvas#slot6(width=70,height=300)
                   canvas#slot7(width=70,height=300)
                   canvas#slot8(width=70,height=300)
+                #footer
+                    h1(onclick="rolling();") 抽
         script(src="/javascripts/slot.js")
         script.
             $(slotgame);
