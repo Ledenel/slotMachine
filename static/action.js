@@ -18,6 +18,26 @@ var drawText = function(context, i) {
     context.restore();
 }
 
+var animate = function(context) {
+    var num = "0123456789";
+    var index = 0;
+    var pos = 0;
+    setInterval(function() {
+        context.save();
+        context.clearRect(0, 0, 80, 400);
+        context.font = "bold 64px Slackey";
+        context.fillText(num[index%10], 40-20, 240+28+pos);
+        context.fillText(num[(index+1)%10], 40-20, 160+28+pos);
+        context.fillText(num[(index+2)%10], 40-20, 80+28+pos);
+        context.restore();
+        pos += 1;
+        if (pos >= 80) {
+            pos = 0;
+            index += 1;
+        }
+    }, 10);
+};
+
 var start = function() {
 //    var slots = $('canvas');
 //    var contexts = $.map(slots, function(slot, n) {
@@ -27,8 +47,11 @@ var start = function() {
     var slots = document.getElementsByTagName('canvas');
     for (var i = 0; i < slots.length; ++i) {
         var context = slots[i].getContext('2d');
-        draw(context);
-        drawText(context, i);
+        //draw(context);
+        //drawText(context, i);
+        setTimeout(function() {
+            animate(context);
+        }, 200+200*i);
     }
 };
 
