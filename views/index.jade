@@ -24,23 +24,6 @@ html
                   canvas#slot6(width=70,height=300)
                   canvas#slot7(width=70,height=300)
                   canvas#slot8(width=70,height=300)
+        script(src="/javascripts/slot.js")
         script.
-            function slotgame() {
-                var img = new Image();
-                img.src = "/images/lightning.png";
-                img.addEventListener("load", function () {
-                    // image loaded
-                    $("canvas").map(function(index,n){
-                        var ctx = n.getContext("2d");
-                        ctx.save();
-                        ctx.drawImage(img,3,60);
-                        ctx.restore();
-                        console.log("image loaded");
-                    })
-
-                });
-                //console.log($('#slot1')[0])
-
-            }
-        script.
-            $(function(){slotgame();});
+            $(slotgame);

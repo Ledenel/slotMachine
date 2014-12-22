@@ -36,13 +36,18 @@ html , body
 }
 #container
 {
-    position:absolute;
-    width: 750px;
-    height: 340px;
-    left: 40%;
-    top: 40%;
-    margin-left: -160px;
-    margin-top: -160px;
+    /*position:absolute;*/
+    /*width: 750px;*/
+    /*height: 340px;*/
+    /*left: 40%;*/
+    /*width: 100%;*/
+    height: auto;
+    vertical-align:middle;
+    display:table;
+    margin: 0 auto;
+    top: 20%;
+    /*margin-left: -160px;*/
+    /*margin-top: -160px;*/
 }
 #container h1
 {
