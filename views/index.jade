@@ -1,0 +1,46 @@
+//
+   Created by 明阳 on 2014/12/22.
+doctype html
+html
+    head
+        title Slot Machine
+        link(rel='stylesheet', href='/stylesheets/reset.css')
+        link(rel='stylesheet', href='/stylesheets/slot.css')
+        link(rel='stylesheet', href='/Fonts/Slackey.css')
+        //link(rel='stylesheet', href='/stylesheets/style.css')
+        script(src="/javascripts/jquery/1.9.1/jquery.min.js")
+    body
+        #viewport
+            #container
+                #header
+                    h1 Who is luckey?
+                    h3 ipad and yoga
+                #reels
+                  canvas#slot1(width=70,height=300)
+                  canvas#slot2(width=70,height=300)
+                  canvas#slot3(width=70,height=300)
+                  canvas#slot4(width=70,height=300)
+                  canvas#slot5(width=70,height=300)
+                  canvas#slot6(width=70,height=300)
+                  canvas#slot7(width=70,height=300)
+                  canvas#slot8(width=70,height=300)
+        script.
+            function slotgame() {
+                var img = new Image();
+                img.src = "/images/lightning.png";
+                img.addEventListener("load", function () {
+                    // image loaded
+                    $("canvas").map(function(index,n){
+                        var ctx = n.getContext("2d");
+                        ctx.save();
+                        ctx.drawImage(img,3,60);
+                        ctx.restore();
+                        console.log("image loaded");
+                    })
+
+                });
+                //console.log($('#slot1')[0])
+
+            }
+        script.
+            $(function(){slotgame();});

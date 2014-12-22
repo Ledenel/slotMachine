@@ -1,0 +1,26 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+#viewport {
+  background-image: -webkit-linear-gradient(#bbb,#eee,#bbb);
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+#reels {
+  background: transparent;
+  position: relative;
+  z-index: 100;
+  overflow: hidden;
+}
+canvas{
+  position: relative;
+  z-index: 50;
+}
+a {
+  color: #00B7FF;
+}
