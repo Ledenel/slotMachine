@@ -14,8 +14,18 @@ var DRAW_OFFSET = 45 // how much draw offset in slot display from top
 var cnt = -1;
 var stop = [0,0,0,0,0,0,0,0];
 var lucky_star = "12211020";
+var num = "0123456789";
+var drawResult = function (context, index, delta) {
+    var pre = (index+9)%10;
+    var now = index;
+    var suc = (index+1)%10;
+    context.clearRect(0, 0, 80, 400);
+    context.fillText(num[pre], 40-20, 2 * SLOT_HEIGHT + IMAGE_TOP_MARGIN+delta);
+    context.fillText(num[now], 40-20, 1 * SLOT_HEIGHT + IMAGE_TOP_MARGIN+delta);
+    context.fillText(num[suc], 40-20, 0 * SLOT_HEIGHT + IMAGE_TOP_MARGIN+delta);
+    context.restore();
+}
 var animate = function(context, canvas_ID) {
-    var num = "0123456789";
     var index = 0;
     var pos = 0;
     var startSpeed = -6;
@@ -29,24 +39,17 @@ var animate = function(context, canvas_ID) {
         context.shadowOffsetY = 5;
         context.shadowBlur = 5;
         context.font = "bold 64px Slackey";
-        if(pos == 0 && stop[canvas_ID]==1 && num[index%10] == lucky_star[canvas_ID] && velocity == maxSpeed) {
+        if(stop[canvas_ID] == 1 && velocity == maxSpeed) {
+            drawResult(context, parseInt(lucky_star[canvas_ID]), 30);
             clearInterval(interval_ID);
             return;
         }
-        context.clearRect(0, 0, 80, 400);
-        context.fillText(num[index%10], 40-20, 2 * SLOT_HEIGHT + IMAGE_TOP_MARGIN + pos);
-        context.fillText(num[(index+1)%10], 40-20, 1 * SLOT_HEIGHT + IMAGE_TOP_MARGIN + pos);
-        context.fillText(num[(index+2)%10], 40-20, 0 * SLOT_HEIGHT + IMAGE_TOP_MARGIN + pos);
-        //ctx.fillRect(0, i * SLOT_HEIGHT + IMAGE_TOP_MARGIN +10, 70, SLOT_SEPARATOR_HEIGHT);
-        context.restore();
+        drawResult(context, index, pos);
         velocity += acSpeed;
         if(velocity>maxSpeed)velocity = maxSpeed;
         pos += velocity;
         if (pos >= SLOT_HEIGHT) {
-            if(velocity == maxSpeed)
-                pos = 0;
-            else
-                pos -= SLOT_HEIGHT;
+            pos -= SLOT_HEIGHT;
             index += 1;
             index %= 10;
         }
@@ -54,7 +57,7 @@ var animate = function(context, canvas_ID) {
 };
 
 function slotgame() {
-    var num = "210";
+    for(var i in stop)stop[i] = 0;
     $("canvas").map(function(index,n){
         var ctx = n.getContext('2d');
         ctx.save();
@@ -63,11 +66,7 @@ function slotgame() {
         ctx.shadowOffsetY = 5;
         ctx.shadowBlur = 5;
         ctx.font = "bold 64px Slackey";
-        //console.log(num[index]);
-        for(var i = 0 ; i < num.length ; ++i) {
-            ctx.fillText(num[i], 20, i * SLOT_HEIGHT + IMAGE_TOP_MARGIN);
-        }
-        ctx.restore();
+        drawResult(ctx, 0, 0);
     })
 }
 
@@ -84,7 +83,7 @@ function rolling(time) {
     }
     else {
         cnt = -2;
-        for(var i in stop)stop[i] = 0;
+        slotgame();
     }
     ++cnt;
 }
