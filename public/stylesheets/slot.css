@@ -43,9 +43,11 @@ html , body
     /*width: 100%;*/
     height: auto;
     vertical-align:middle;
-    display:table;
-    margin: 0 auto;
-    top: 20%;
+    /*display:table;*/
+    margin: 0px auto;
+    /*top: 20%;*/
+    display: table-cell;
+    width: 100%;
     /*margin-left: -160px;*/
     /*margin-top: -160px;*/
 }
@@ -187,4 +189,21 @@ html , body
 {
     background-image:-moz-linear-gradient(#ffb133,#b3671a);
     background-image:-webkit-gradient(linear, left top, left bottom, from(#ffb133), to(#b3671a));
+}
+
+#container-outter {
+    margin: 0 auto;
+    padding: 0;
+    display: table;
+    vertical-align: middle;
+    text-align: center;
+    height: 100%;
+}
+
+#container-inner {
+    border: red 1px solid;
+    vertical-align: middle;
+    display: table-cell;
+    width: 100%;
+    height: auto;
 }

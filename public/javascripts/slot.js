@@ -18,7 +18,10 @@ var animate = function(context, canvas_ID) {
     var num = "0123456789";
     var index = 0;
     var pos = 0;
-    var dist = 40;
+    var startSpeed = -6;
+    var acSpeed = 0.5;
+    var maxSpeed = 40;
+    var velocity = startSpeed;
     var interval_ID = setInterval(function() {
         context.save();
         context.shadowColor = "rgba(0,0,0,0.5)";
@@ -26,12 +29,8 @@ var animate = function(context, canvas_ID) {
         context.shadowOffsetY = 5;
         context.shadowBlur = 5;
         context.font = "bold 64px Slackey";
-        //context.fillText(num[index%10], 40-20, 240+28+pos);
-        //context.fillText(num[(index+1)%10], 40-20, 160+28+pos);
-        //context.fillText(num[(index+2)%10], 40-20, 80+28+pos);
-        if(pos == 0 && stop[canvas_ID]==1 && num[index%10] == lucky_star[canvas_ID]) {
+        if(pos == 0 && stop[canvas_ID]==1 && num[index%10] == lucky_star[canvas_ID] && velocity == maxSpeed) {
             clearInterval(interval_ID);
-            console.log("pos:"+pos);
             return;
         }
         context.clearRect(0, 0, 80, 400);
@@ -40,10 +39,14 @@ var animate = function(context, canvas_ID) {
         context.fillText(num[(index+2)%10], 40-20, 0 * SLOT_HEIGHT + IMAGE_TOP_MARGIN + pos);
         //ctx.fillRect(0, i * SLOT_HEIGHT + IMAGE_TOP_MARGIN +10, 70, SLOT_SEPARATOR_HEIGHT);
         context.restore();
-        pos += dist;
+        velocity += acSpeed;
+        if(velocity>maxSpeed)velocity = maxSpeed;
+        pos += velocity;
         if (pos >= SLOT_HEIGHT) {
-            pos -= SLOT_HEIGHT;
-            //pos = 0;
+            if(velocity == maxSpeed)
+                pos = 0;
+            else
+                pos -= SLOT_HEIGHT;
             index += 1;
             index %= 10;
         }
@@ -54,7 +57,6 @@ function slotgame() {
     var num = "210";
     $("canvas").map(function(index,n){
         var ctx = n.getContext('2d');
-        //var asset = ;
         ctx.save();
         ctx.shadowColor = "rgba(0,0,0,0.5)";
         ctx.shadowOffsetX = 5;
@@ -64,13 +66,9 @@ function slotgame() {
         //console.log(num[index]);
         for(var i = 0 ; i < num.length ; ++i) {
             ctx.fillText(num[i], 20, i * SLOT_HEIGHT + IMAGE_TOP_MARGIN);
-            //ctx.fillRect(0, i * SLOT_HEIGHT + IMAGE_TOP_MARGIN +10, 70, SLOT_SEPARATOR_HEIGHT);
         }
         ctx.restore();
-        //ctx.fillRect(0, i * SLOT_HEIGHT, 70, SLOT_SEPARATOR_HEIGHT);
-        //ctx.fillRect(0, (i + ITEM_COUNT)  * SLOT_HEIGHT, 70, SLOT_SEPARATOR_HEIGHT);
     })
-    //rolling();
 }
 
 function rolling(time) {
@@ -88,6 +86,5 @@ function rolling(time) {
         cnt = -2;
         for(var i in stop)stop[i] = 0;
     }
-    console.log(cnt);
     ++cnt;
 }

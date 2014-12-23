@@ -11,21 +11,22 @@ html
         script(src="/javascripts/jquery/1.9.1/jquery.min.js")
     body
         #viewport
-            #container
-                #header
-                    h1 Who is lucky?
-                    h3 ipad and yoga
-                #reels
-                  canvas#slot1(width=70,height=300)
-                  canvas#slot2(width=70,height=300)
-                  canvas#slot3(width=70,height=300)
-                  canvas#slot4(width=70,height=300)
-                  canvas#slot5(width=70,height=300)
-                  canvas#slot6(width=70,height=300)
-                  canvas#slot7(width=70,height=300)
-                  canvas#slot8(width=70,height=300)
-                #footer
-                    h1(onclick="rolling();") 抽
+            #container-outter
+                #container
+                    #header
+                        h1 Who is lucky?
+                        h3 ipad and yoga
+                    #reels
+                      canvas#slot1(width=70,height=300)
+                      canvas#slot2(width=70,height=300)
+                      canvas#slot3(width=70,height=300)
+                      canvas#slot4(width=70,height=300)
+                      canvas#slot5(width=70,height=300)
+                      canvas#slot6(width=70,height=300)
+                      canvas#slot7(width=70,height=300)
+                      canvas#slot8(width=70,height=300)
+                    #footer
+                        h1(onclick="rolling();") 抽
         script(src="/javascripts/slot.js")
         script.
             $(slotgame);
