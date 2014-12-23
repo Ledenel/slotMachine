@@ -1,14 +1,3 @@
-// this is the main file of the control logic
-
-//var draw = function(context) {
-//    context.save();
-//    context.fillStyle = "rgba(0,0,0,1)";
-//    context.fillRect(10, 130, 60, 140);
-//    context.fillStyle = "rgba(200,200,200,1)";
-//    context.fillRect(15, 135, 50, 130);
-//    context.restore();
-//};
-
 var num = "12211010";
 
 //var drawText = function(context, i) {
