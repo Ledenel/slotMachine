@@ -86,9 +86,12 @@ function rolling(time) {
     else if(cnt < 1 ){
         //stop[cnt] = 1;
         var id = 0;
-        setInterval(function () {
+        var interval_ID = setInterval(function () {
             stop[id] = 1;
             ++id;
+            if(id>=8) {
+                clearInterval(interval_ID);
+            }
         }, 500);
     }
     else {
