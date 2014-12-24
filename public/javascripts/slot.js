@@ -83,8 +83,13 @@ function rolling(time) {
             }, 200 + 100 * index);
         })
     }
-    else if(cnt < 8 ){
-        stop[cnt] = 1;
+    else if(cnt < 1 ){
+        //stop[cnt] = 1;
+        var id = 0;
+        setInterval(function () {
+            stop[id] = 1;
+            ++id;
+        }, 500);
     }
     else {
         cnt = -2;
