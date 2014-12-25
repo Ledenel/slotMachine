@@ -69,7 +69,7 @@ html , body
 #container #header h1
 {
     text-align: center;
-    font: 26px Slackey;
+    font: 64px Slackey;
     text-shadow:#000 0px 0px 1px , #000 0px 0px 1px;
 }
 #container #header h3

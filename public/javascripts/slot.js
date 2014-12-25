@@ -12,6 +12,9 @@ var lucky_star = "12211014";
 var num = "0123456789";
 var TOP =100;
 var LEFT = 15;
+var velocity = [0,0,0,0,0,0,0,0];
+var acSpeed = [0,0,0,0,0,0,0,0];
+var stopped = [0,0,0,0,0,0,0,0];
 var drawResult = function (context, index, delta) {
     context.shadowColor = "rgba(0,0,0,0.5)";
     context.shadowOffsetX = 5;
@@ -46,21 +49,22 @@ var vibration = function (context, index) {
 var animate = function(context, canvas_ID) {
     var index = 0;
     var pos = 0;
-    var startSpeed = -6;
-    var acSpeed = 0.8;
+    var startSpeed = -15;
+    acSpeed[canvas_ID] = 3;
     var maxSpeed = 40;
-    var velocity = startSpeed;
+    velocity[canvas_ID] = startSpeed;
     var interval_ID = setInterval(function() {
-        if(stop[canvas_ID] == 1 && velocity == maxSpeed) {
+        if(stop[canvas_ID] == 1 && index == parseInt(lucky_star[canvas_ID])) {
             drawResult(context, parseInt(lucky_star[canvas_ID]), TOP);
             clearInterval(interval_ID);
             vibration(context, parseInt(lucky_star[canvas_ID]));
+            stopped[canvas_ID] = 1;
             return;
         }
         drawResult(context, index, pos+TOP);
-        velocity += acSpeed;
-        if(velocity>maxSpeed)velocity = maxSpeed;
-        pos += velocity;
+        velocity[canvas_ID] += acSpeed[canvas_ID];
+        if(velocity[canvas_ID]>maxSpeed)velocity[canvas_ID] = maxSpeed;
+        pos += velocity[canvas_ID];
         if (pos >= SLOT_HEIGHT) {
             pos -= SLOT_HEIGHT;
             index += 1;
@@ -76,16 +80,31 @@ function rolling(time) {
             }, 200 + 100 * index);
         })
     }
-    else if(cnt < 1 ){
+    else if(cnt == 0 ){
         //stop[cnt] = 1;
-        var id = 0;
-        var interval_ID = setInterval(function () {
-            stop[id] = 1;
-            ++id;
-            if(id>=8) {
-                clearInterval(interval_ID);
-            }
-        }, 500);
+        $('canvas').each(function (index, ele) {
+            setTimeout(function () {
+                if(index < 6) {
+                    stop[index] = 1;
+                }
+                else {
+                    velocity[index] = 10;
+                    acSpeed[index] = 0;
+                    var interval_ID = setInterval(function () {
+                        if(stopped[index-1]) {
+                            stop[index] = 1;
+                            console.log(index+" "+stopped);
+                            if(index == 7) {
+                                setTimeout(function () {
+                                    $('h1').text('秦秉臣');
+                                },1500);
+                            }
+                            clearInterval(interval_ID);
+                        }
+                    },1000)
+                }
+            }, 1000 * index);
+        })
     }
     else {
         cnt = -2;
@@ -94,7 +113,11 @@ function rolling(time) {
     ++cnt;
 }
 function slotgame() {
-    for(var i in stop)stop[i] = 0;
+    for(var i in stop) {
+        stop[i] = 0;
+        stopped[i] = 0;
+    }
+    $('h1').text('Who is lucky?');
     $("canvas").map(function(index,n){
         var ctx = n.getContext('2d');
         drawResult(ctx, 0, TOP);
