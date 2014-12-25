@@ -8,7 +8,7 @@ var SLOT_SEPARATOR_HEIGHT = 6
 var SLOT_HEIGHT = IMAGE_HEIGHT + IMAGE_TOP_MARGIN + IMAGE_BOTTOM_MARGIN + SLOT_SEPARATOR_HEIGHT; // how many pixels one slot image takes
 var cnt = -1;
 var stop = [0,0,0,0,0,0,0,0];
-var lucky_star = "12211020";
+var lucky_star = "12211014";
 var num = "0123456789";
 var TOP =100;
 var LEFT = 15;
@@ -51,27 +51,11 @@ var animate = function(context, canvas_ID) {
     var maxSpeed = 40;
     var velocity = startSpeed;
     var interval_ID = setInterval(function() {
-        if(stop[canvas_ID] == 1 ) {
-            if(canvas_ID <6 && velocity == maxSpeed) {
-                drawResult(context, parseInt(lucky_star[canvas_ID]), TOP);
-                clearInterval(interval_ID);
-                vibration(context, parseInt(lucky_star[canvas_ID]));
-                return;
-            }
-            else {
-                if(velocity < 0) {
-                    drawResult(context, parseInt(lucky_star[canvas_ID]), TOP);
-                    clearInterval(interval_ID);
-                    //vibration(context, parseInt(lucky_star[canvas_ID]));
-                    return ;
-                }
-                if(velocity == maxSpeed) {
-                    index = parseInt(lucky_star[canvas_ID])-1;
-                    pos = 0;
-                    velocity = 0.5;
-                    acSpeed = -0.00147;
-                }
-            }
+        if(stop[canvas_ID] == 1 && velocity == maxSpeed) {
+            drawResult(context, parseInt(lucky_star[canvas_ID]), TOP);
+            clearInterval(interval_ID);
+            vibration(context, parseInt(lucky_star[canvas_ID]));
+            return;
         }
         drawResult(context, index, pos+TOP);
         velocity += acSpeed;
@@ -98,20 +82,10 @@ function rolling(time) {
         var interval_ID = setInterval(function () {
             stop[id] = 1;
             ++id;
-            if(id>=6) {
-                clearInterval(interval_ID);
-            }
-        }, 500);
-    }
-    else if(cnt == 1) {
-        var id = 6;
-        var interval_ID = setInterval(function () {
-            stop[id] = 1;
-            ++id;
             if(id>=8) {
                 clearInterval(interval_ID);
             }
-        }, 1500);
+        }, 500);
     }
     else {
         cnt = -2;
@@ -125,6 +99,5 @@ function slotgame() {
         var ctx = n.getContext('2d');
         drawResult(ctx, 0, TOP);
     })
-    $('body').keydown(rolling);
 }
 
