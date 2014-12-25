@@ -25,6 +25,7 @@ html
                       canvas#slot8(width=70,height=300)
         #bgvid_div(style="overflow:hidden;")
             video#bgvid(src="/video/background3.mp4",loop,autoplay,autobuffer,preload="auto",onended="VM.play();",data-tag,oncontextmenu="return false")
+        script(src="/javascripts/list.js")
         script(src="/javascripts/slot.js")
         script.
             window.onload = slotgame;

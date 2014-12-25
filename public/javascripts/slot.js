@@ -8,7 +8,7 @@ var SLOT_SEPARATOR_HEIGHT = 6
 var SLOT_HEIGHT = IMAGE_HEIGHT + IMAGE_TOP_MARGIN + IMAGE_BOTTOM_MARGIN + SLOT_SEPARATOR_HEIGHT; // how many pixels one slot image takes
 var cnt = -1;
 var stop = [0,0,0,0,0,0,0,0];
-var lucky_star = "12211014";
+var lucky_star;
 var num = "0123456789";
 var TOP =100;
 var LEFT = 15;
@@ -117,6 +117,7 @@ function slotgame() {
         stop[i] = 0;
         stopped[i] = 0;
     }
+    lucky_star = stars[parseInt(stars.length*Math.random())];
     $('h1').text('Who is lucky?');
     $("canvas").map(function(index,n){
         var ctx = n.getContext('2d');
