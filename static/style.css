@@ -2,7 +2,8 @@
     font-family: 'Slackey';
     font-style: normal;
     font-weight: 400;
-    src: local('Slackey'), url(http://fontstatic.useso.com/s/slackey/v6/cG5HiFOQhzefZKN9q0M_vPY6323mHUZFJMgTvxaG2iE.woff2) format('woff2');
+    /*src: local('Slackey'), url(http://fontstatic.useso.com/s/slackey/v6/cG5HiFOQhzefZKN9q0M_vPY6323mHUZFJMgTvxaG2iE.woff2) format('woff2');*/
+    src: local('Slackey'), url(./Slackey.woff2) format('woff2');
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
 }
 
@@ -27,6 +28,7 @@
     vertical-align: middle;
     text-align: center;
     height: 100%;
+    background-color: transparent;
 }
 
 #container-inner {
@@ -60,23 +62,30 @@
     position: relative;
     margin: 20px;
     height: 160px;
-    background: black;
-    /*background: transparent;*/
+    background-color: white;
+    background: linear-gradient(to bottom,  black, lightgray, red, lightgray, black);
+    border-image: linear-gradient(to bottom,  black, lightgray, red, lightgray, black);
     border: 10px solid;
     border-color: #777 #999 #666 #999;
     border-radius: 3px;
     z-index: 100;
     overflow: hidden;
+    padding-left: 2px;
+    padding-right: 2px;
 }
 
 canvas {
     display: inline-block;
     position: relative;
-    background-color: white;
+    background-color: transparent;
+/*    background: linear-gradient(to right, black, lightgray, white, lightgray, black);*/
+    background: radial-gradient(white, lightgray, black, black);
     z-index: 50;
 /*
     width: 80px;
     height: 400px;
 */
     margin-top: -120px;
+    margin-left: -2px;
+    margin-right: -2px;
 }
