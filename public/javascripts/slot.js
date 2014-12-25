@@ -74,6 +74,7 @@ var animate = function(context, canvas_ID) {
 };
 function rolling(time) {
     if(cnt<0) {
+        speed = 0.1;
         $('canvas').each(function (index, ele) {
             setTimeout(function () {
                 animate(ele.getContext('2d'), index);
@@ -123,5 +124,6 @@ function slotgame() {
         var ctx = n.getContext('2d');
         drawResult(ctx, 0, TOP);
     })
+    speed = 0.02;
 }
 
