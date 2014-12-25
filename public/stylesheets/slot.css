@@ -107,7 +107,7 @@ html , body
     text-align: center;
     background:transparent;
     border: 10px solid;
-    border-color: #777 #999 #666 #999;
+    border-color: #FFFFCC;
     border-radius:3px;
     -moz-box-shadow:#fff 0px 1px 0px;
     z-index: 100;
@@ -115,11 +115,13 @@ html , body
 #container #reels canvas
 {
     width: 87px;
-    height: 300px;
+    /*height: 300px;*/
     position: relative;
-    background: white;
+    background: radial-gradient(white, lightgray, black, black);
     border: 2px solid gold;
     z-index:50;
+    margin-top: -120px;
+
 }
 
 #container #overlay

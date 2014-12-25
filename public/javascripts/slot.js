@@ -10,6 +10,8 @@ var cnt = -1;
 var stop = [0,0,0,0,0,0,0,0];
 var lucky_star = "12211020";
 var num = "0123456789";
+var TOP =100;
+var LEFT = 15;
 var drawResult = function (context, index, delta) {
     context.shadowColor = "rgba(0,0,0,0.5)";
     context.shadowOffsetX = 5;
@@ -20,9 +22,9 @@ var drawResult = function (context, index, delta) {
     var now = index;
     var suc = (index+1)%10;
     context.clearRect(0, 0, 80, 400);
-    context.fillText(num[pre], 40-20, 2 * SLOT_HEIGHT + IMAGE_TOP_MARGIN+delta);
-    context.fillText(num[now], 40-20, 1 * SLOT_HEIGHT + IMAGE_TOP_MARGIN+delta);
-    context.fillText(num[suc], 40-20, 0 * SLOT_HEIGHT + IMAGE_TOP_MARGIN+delta);
+    context.fillText(num[pre], LEFT, 2 * SLOT_HEIGHT + IMAGE_TOP_MARGIN+delta);
+    context.fillText(num[now], LEFT, 1 * SLOT_HEIGHT + IMAGE_TOP_MARGIN+delta);
+    context.fillText(num[suc], LEFT, 0 * SLOT_HEIGHT + IMAGE_TOP_MARGIN+delta);
     context.restore();
 }
 var vibration = function (context, index) {
@@ -31,7 +33,7 @@ var vibration = function (context, index) {
     var maxDelta = 20; //
     var dist1 = function(x) {return maxDelta-(maxDelta/limit)*x;};
     var dist2 = function(x) {return Math.sin(x);};
-    var dist3 = 30;
+    var dist3 = TOP;
     var interval_ID = setInterval(function () {
         drawResult(context, index, dist1(count)*dist2(count)+dist3);
         ++count;
@@ -51,14 +53,14 @@ var animate = function(context, canvas_ID) {
     var interval_ID = setInterval(function() {
         if(stop[canvas_ID] == 1 ) {
             if(canvas_ID <6 && velocity == maxSpeed) {
-                drawResult(context, parseInt(lucky_star[canvas_ID]), 30);
+                drawResult(context, parseInt(lucky_star[canvas_ID]), TOP);
                 clearInterval(interval_ID);
                 vibration(context, parseInt(lucky_star[canvas_ID]));
                 return;
             }
             else {
                 if(velocity < 0) {
-                    drawResult(context, parseInt(lucky_star[canvas_ID]), 30);
+                    drawResult(context, parseInt(lucky_star[canvas_ID]), TOP);
                     clearInterval(interval_ID);
                     //vibration(context, parseInt(lucky_star[canvas_ID]));
                     return ;
@@ -71,7 +73,7 @@ var animate = function(context, canvas_ID) {
                 }
             }
         }
-        drawResult(context, index, pos);
+        drawResult(context, index, pos+TOP);
         velocity += acSpeed;
         if(velocity>maxSpeed)velocity = maxSpeed;
         pos += velocity;
@@ -121,7 +123,7 @@ function slotgame() {
     for(var i in stop)stop[i] = 0;
     $("canvas").map(function(index,n){
         var ctx = n.getContext('2d');
-        drawResult(ctx, 0, 0);
+        drawResult(ctx, 0, TOP);
     })
     $('body').keydown(rolling);
 }
