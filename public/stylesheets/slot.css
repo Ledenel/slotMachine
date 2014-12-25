@@ -6,10 +6,13 @@ html , body
 }
 #viewport
 {
-    background-color:#cdcdcd;
-    background-image:-moz-linear-gradient(#bbb,#eee,#bbb);
-    background-image:-webkit-linear-gradient(#bbb,#eee,#bbb);
-    overflow:hidden;
+    /*background-color:#cdcdcd;*/
+    /*background-image:-moz-linear-gradient(#bbb,#eee,#bbb);*/
+    /*background-image:-webkit-linear-gradient(#bbb,#eee,#bbb);*/
+    /*overflow:hidden;*/
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     display:block;

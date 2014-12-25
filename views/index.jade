@@ -7,7 +7,6 @@ html
         link(rel='stylesheet', href='/stylesheets/reset.css')
         link(rel='stylesheet', href='/stylesheets/slot.css')
         link(rel='stylesheet', href='/Fonts/Slackey.css')
-        //link(rel='stylesheet', href='/stylesheets/style.css')
         script(src="/javascripts/jquery/1.9.1/jquery.min.js")
     body
         #viewport
@@ -15,7 +14,6 @@ html
                 #container
                     #header
                         h1 Who is lucky?
-                        h3 ipad and yoga
                     #reels
                       canvas#slot1(width=70,height=300)
                       canvas#slot2(width=70,height=300)
@@ -25,9 +23,8 @@ html
                       canvas#slot6(width=70,height=300)
                       canvas#slot7(width=70,height=300)
                       canvas#slot8(width=70,height=300)
-                    #footer
-                        //h1(onclick="rolling();")
-                        button(onclick="rolling();") 抽
+        #bgvid
+            video(src="/video/background3.mp4",loop,autoplay,autobuffer,preload="auto",onended="VM.play();",data-tag,oncontextmenu="return false")
         script(src="/javascripts/slot.js")
         script.
             window.onload = slotgame;
