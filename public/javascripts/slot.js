@@ -111,7 +111,7 @@ function rolling(time) {
             if(id>=8) {
                 clearInterval(interval_ID);
             }
-        }, 500);
+        }, 1500);
     }
     else {
         cnt = -2;
