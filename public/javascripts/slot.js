@@ -147,7 +147,7 @@ function rollingRandom(time) {
                         $('h1').text('秦秉臣');
                     },1500);
                 }
-            }, 4000 * order[index]);
+            }, 2000 * order[index]);
         })
     }
     else {
