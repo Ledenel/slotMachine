@@ -56,7 +56,7 @@ var animate = function(context, canvas_ID) {
     var maxSpeed = 40;
     velocity[canvas_ID] = startSpeed;
     var interval_ID = setInterval(function() {
-        if(stop[canvas_ID] == 1 && index == parseInt(lucky_star[canvas_ID])) {
+        if(stop[canvas_ID] == 1) {
             drawResult(context, parseInt(lucky_star[canvas_ID]), TOP);
             clearInterval(interval_ID);
             vibration(context, parseInt(lucky_star[canvas_ID]));
