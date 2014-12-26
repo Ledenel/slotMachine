@@ -121,11 +121,12 @@ html , body
     width: 87px;
     /*height: 300px;*/
     position: relative;
-    background: radial-gradient(white, lightgray, black, black);
-    border: 2px solid gold;
+    /*background: #ffffff;*/
+    background: radial-gradient(#fff, #CCC,#AAA ,#666,#111, #000);
+    /*border: 2px solid gold;*/
     z-index:50;
     margin-top: -120px;
-
+    /*margin-bottom: -120px;*/
 }
 
 #container #overlay

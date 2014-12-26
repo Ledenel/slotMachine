@@ -15,23 +15,25 @@ html
                     #header
                         h1 Who is lucky?
                     #reels
-                      canvas#slot1(width=70,height=300)
-                      canvas#slot2(width=70,height=300)
-                      canvas#slot3(width=70,height=300)
-                      canvas#slot4(width=70,height=300)
-                      canvas#slot5(width=70,height=300)
-                      canvas#slot6(width=70,height=300)
-                      canvas#slot7(width=70,height=300)
-                      canvas#slot8(width=70,height=300)
+                      canvas#slot1(width=70,height=340)
+                      canvas#slot2(width=70,height=340)
+                      canvas#slot3(width=70,height=340)
+                      canvas#slot4(width=70,height=340)
+                      canvas#slot5(width=70,height=340)
+                      canvas#slot6(width=70,height=340)
+                      canvas#slot7(width=70,height=340)
+                      canvas#slot8(width=70,height=340)
         #bgvid_div(style="overflow:hidden;")
             video#bgvid(src="/video/background3.mp4",loop,autoplay,autobuffer,preload="auto",onended="VM.play();",data-tag,oncontextmenu="return false")
         script(src="/javascripts/list.js")
         script(src="/javascripts/slot.js")
         script.
             window.onload = slotgame;
-            var lastPress = new Date();
+
+            var protection = 0;
             window.onkeydown = function (event) {
                 console.log(event.keyCode+' Down!');
+                if(protection)return ;
                 switch (event.keyCode) {
                     case 13:
                         rollingRandom();
@@ -50,6 +52,5 @@ html
             setInterval(function () {
                 ++x;
                 reels.css("box-shadow","rgb(255, 255, 255) 0px 0px "+(Math.sin(x*speed)*25+50)+"px 0px");
-                h1.css("text-shadow","rgb(230, 255, 43) 0px 0px "+(Math.sin(x*speed)*25+35)+"px, rgb(72, 167, 255) 0px 0px "+(Math.sin(x*speed)*25+35)+"px")
-                //console.log($("#reels").css("box-shadow"));
+                h1.css("text-shadow","rgb(230, 255, 43) 0px 0px "+(Math.sin(x*speed)*25+35)+"px, rgb(72, 167, 255) 0px 0px "+(Math.sin(x*speed)*25+35)+"px");
             },20);

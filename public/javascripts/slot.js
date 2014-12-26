@@ -125,6 +125,7 @@ function rollingRandom(time) {
     }
     else if(cnt == 0 ){
         //stop[cnt] = 1;
+        protection = 1;
         var order = [0,1,2,3,4,5,6,7];
         for(var i = 7 ; i > 0 ; --i) {
             var j = parseInt(Math.random()*i);
@@ -136,6 +137,12 @@ function rollingRandom(time) {
         $('canvas').each(function (index, ele) {
             setTimeout(function () {
                 stop[index] = 1;
+                if(order[index] == 7) {
+                    protection = 0;
+                    setTimeout(function () {
+                        $('h1').text('秦秉臣');
+                    },1500);
+                }
             }, 4000 * order[index]);
         })
     }
@@ -156,9 +163,16 @@ function rollingLine(time) {
         })
     }
     else if(cnt == 0 ){
+        protection = 1;
         $('canvas').each(function (index, ele) {
             setTimeout(function () {
                 stop[index] = 1;
+                if(index == 7) {
+                    protection = 0;
+                    setTimeout(function () {
+                        $('h1').text('秦秉臣');
+                    },1500);
+                }
             }, 500 * index);
         })
     }
