@@ -15,6 +15,8 @@ var LEFT = 15;
 var velocity = [0,0,0,0,0,0,0,0];
 var acSpeed = [0,0,0,0,0,0,0,0];
 var stopped = [0,0,0,0,0,0,0,0];
+localStorage.unlucky = localStorage.unlucky || "{}";
+var nolukystar = false;
 var drawResult = function (context, index, delta) {
     context.shadowColor = "rgba(0,0,0,0.5)";
     context.shadowOffsetX = 5;
@@ -115,6 +117,7 @@ function rolling(time) {
 }
 
 function rollingRandom(time) {
+    if(nolukystar)return ;
     if(cnt<0) {
         speed = 0.1;
         $('canvas').each(function (index, ele) {
@@ -139,6 +142,7 @@ function rollingRandom(time) {
                 stop[index] = 1;
                 if(order[index] == 7) {
                     protection = 0;
+                    localStorage.unlucky[lucky_star] = 1;
                     setTimeout(function () {
                         $('h1').text('秦秉臣');
                     },1500);
@@ -154,6 +158,7 @@ function rollingRandom(time) {
 }
 
 function rollingLine(time) {
+    if(nolukystar)return ;
     if(cnt<0) {
         speed = 0.1;
         $('canvas').each(function (index, ele) {
@@ -194,5 +199,20 @@ function slotgame() {
         drawResult(ctx, 0, TOP);
     })
     speed = 0.02;
+    var unlucky = JSON.parse(localStorage.unlucky);
+    console.log(unlucky);
+    var try_cnt = 0;
+    while(unlucky[lucky_star]) {
+        lucky_star = stars[parseInt(stars.length * Math.random())];
+        ++try_cnt;
+        if(try_cnt > 100000) {
+            console.log("Can not find lucky star!");
+            $('h1').text("Press R to reset!");
+            nolukystar = true;
+            return ;
+        }
+    }
+    unlucky[lucky_star] = 1;
+    localStorage.unlucky = JSON.stringify(unlucky);
 }
 

@@ -24,12 +24,11 @@ html
                       canvas#slot7(width=70,height=340)
                       canvas#slot8(width=70,height=340)
         #bgvid_div(style="overflow:hidden;")
-            video#bgvid(src="/video/background3.mp4",loop,autoplay,autobuffer,preload="auto",onended="VM.play();",data-tag,oncontextmenu="return false")
+            video#bgvid(src="/video/background3.mp4",loop,autoplay,autobuffer,preload="auto",data-tag,oncontextmenu="return false;")
         script(src="/javascripts/list.js")
         script(src="/javascripts/slot.js")
         script.
             window.onload = slotgame;
-
             var protection = 0;
             window.onkeydown = function (event) {
                 console.log(event.keyCode+' Down!');
@@ -37,11 +36,14 @@ html
                 switch (event.keyCode) {
                     case 13:
                         rollingRandom();
-                        lastPress = new Date();
                         break;
                     case 32:
                         rollingLine();
-                        lastPress = new Date();
+                        break;
+                    case 82:
+                        localStorage.unlucky = "{}";
+                        nolukystar = false;
+                        slotgame();
                         break;
                 }
             };
