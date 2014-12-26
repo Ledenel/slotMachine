@@ -69,7 +69,8 @@ html , body
 #container #header h1
 {
     text-align: center;
-    font: 64px Slackey;
+    font-family: 'Slackey','KaiTi';
+    font-size: 64px ;
     text-shadow: #e6ff2b 0px 0px 30px , #48a7ff 0px 0px 30px;
 }
 #container #header h3
