@@ -113,6 +113,61 @@ function rolling(time) {
     }
     ++cnt;
 }
+
+function rollingRandom(time) {
+    if(cnt<0) {
+        speed = 0.1;
+        $('canvas').each(function (index, ele) {
+            setTimeout(function () {
+                animate(ele.getContext('2d'), index);
+            }, 200 + 100 * index);
+        })
+    }
+    else if(cnt == 0 ){
+        //stop[cnt] = 1;
+        var order = [0,1,2,3,4,5,6,7];
+        for(var i = 7 ; i > 0 ; --i) {
+            var j = parseInt(Math.random()*i);
+            var k = order[i];
+            order[i] = order[j];
+            order[j] = k;
+        }
+        console.log(order);
+        $('canvas').each(function (index, ele) {
+            setTimeout(function () {
+                stop[index] = 1;
+            }, 4000 * order[index]);
+        })
+    }
+    else {
+        cnt = -2;
+        slotgame();
+    }
+    ++cnt;
+}
+
+function rollingLine(time) {
+    if(cnt<0) {
+        speed = 0.1;
+        $('canvas').each(function (index, ele) {
+            setTimeout(function () {
+                animate(ele.getContext('2d'), index);
+            }, 200 + 100 * index);
+        })
+    }
+    else if(cnt == 0 ){
+        $('canvas').each(function (index, ele) {
+            setTimeout(function () {
+                stop[index] = 1;
+            }, 500 * index);
+        })
+    }
+    else {
+        cnt = -2;
+        slotgame();
+    }
+    ++cnt;
+}
 function slotgame() {
     for(var i in stop) {
         stop[i] = 0;
